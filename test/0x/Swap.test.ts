@@ -1,14 +1,16 @@
 import { expect } from 'chai'
-import { ethers, network } from 'hardhat'
+import hardhat, { ethers, network } from 'hardhat'
 import fetch from 'node-fetch'
+
 
 const ONE_ETHER_BASE_UNITS = '1000000000000000000' // 1 ETH
 const MINIMAL_ERC20_ABI = ['function balanceOf(address account) external view returns (uint256)']
 
+
 describe('0x API integration', function () {
     before(async () => {
-        const [deployer] = await ethers.getSigners()
-        console.log('Deployer: ', deployer.address)
+        const { deployer, user1} = await hardhat.getNamedAccounts()
+        console.log('deployer: ', deployer);
     })
 
     it('it should be able to use a 0x API mainnet quote', async function () {
